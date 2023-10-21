@@ -152,7 +152,7 @@ void DLL_InsertFirst(DLList *list, int data)
  */
 void DLL_InsertLast(DLList *list, int data)
 {
-	DLLElementPtr tmp = (DLLElementPtr)malloc(sizeof(struct DLLElement));
+	struct DLLElement * tmp = (DLLElementPtr)malloc(sizeof(struct DLLElement));
 	if (!tmp)
 	{
 		DLL_Error();
