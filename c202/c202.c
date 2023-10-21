@@ -206,7 +206,7 @@ void Stack_Dispose(Stack *stack)
 	{
 		free(stack->array);
 		stack->array = NULL;
-		//free(stack);
+		free(stack);
 	}
 }
 
