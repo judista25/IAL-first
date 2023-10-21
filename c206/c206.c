@@ -152,7 +152,7 @@ void DLL_InsertFirst(DLList *list, int data)
  */
 void DLL_InsertLast(DLList *list, int data)
 {
-	struct DLLElement * tmp = (DLLElementPtr)malloc(sizeof(struct DLLElement));
+	DLLElementPtr tmp = (DLLElementPtr)malloc(sizeof(struct DLLElement));
 	if (!tmp)
 	{
 		DLL_Error();
@@ -160,7 +160,7 @@ void DLL_InsertLast(DLList *list, int data)
 	}
 	if (list == NULL)
 	{
-		fprintf(stderr, "prd insert last\n");
+		fprintf(stderr, "List not initialized! What you doin?\n");
 		return;
 	}
 	tmp->data = data;
@@ -170,9 +170,9 @@ void DLL_InsertLast(DLList *list, int data)
 		list->lastElement->nextElement = tmp;
 		tmp->previousElement = list->lastElement;
 	}
-
-	// set tmp as new last element and as well as ?active?
+	// set tmp as new last element and first if needed
 	list->lastElement = tmp;
+	fprintf(stderr,"%d and %d\n",tmp->data,list->lastElement);
 	if (!(list->firstElement))
 		list->firstElement = tmp;
 }
