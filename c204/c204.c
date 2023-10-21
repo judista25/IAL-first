@@ -232,25 +232,14 @@ void expr_value_push(Stack *stack, int value)
 	// findout how many digits does value have
 	int tmpVal = value;
 	int len = 0;
-	do
-	{
-		len++;
-		value /= 10;
-	} while (value != 0);
 	Stack_Push(stack, ';');
 	if (tmpVal < 0)
 	{
 		Stack_Push(stack, '-');
-		len++;
 	}
 	// transfer int to char *
-	char *tmp = malloc(len + 1);
-	if (tmp == NULL)
-	{
-		perror("malloc fail - expr_value_push()");
-		return;
-	}
-	vsprintf(tmp, "%d", tmpVal);
+	char *tmp = NULL;
+	len = asprintf(&tmp, "%d", tmpVal);
 	// fprintf(stderr,"pushed %s\n",tmp);
 	tmp[len + 2] = '\0';
 	// push to stack digit by digit with ; as a divider
