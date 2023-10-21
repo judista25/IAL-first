@@ -153,7 +153,7 @@ void DLL_InsertFirst(DLList *list, int data)
 void DLL_InsertLast(DLList *list, int data)
 {
 	DLLElementPtr tmp = (DLLElementPtr)malloc(sizeof(struct DLLElement));
-	if (tmp == NULL)
+	if (!tmp)
 	{
 		DLL_Error();
 		return;
@@ -164,16 +164,16 @@ void DLL_InsertLast(DLList *list, int data)
 		return;
 	}
 	tmp->data = data;
-	tmp->previousElement = NULL;
-	if (list->lastElement != NULL)
+	tmp->nextElement = NULL;
+	tmp->previousElement = list->lastElement;
+	if (list->lastElement)
 	{
 		list->lastElement->nextElement = tmp;
-		tmp->previousElement = list->lastElement;
 	}
 	// set tmp as new last element and first if needed
 	list->lastElement = tmp;
 	fprintf(stderr,"%d and %d\n",tmp->data,list->lastElement->data);
-	if ((list->firstElement) == NULL)
+	if (!(list->firstElement))
 		list->firstElement = tmp;
 }
 
