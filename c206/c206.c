@@ -172,7 +172,7 @@ void DLL_InsertLast(DLList *list, int data)
 	}
 	// set tmp as new last element and first if needed
 	list->lastElement = tmp;
-	fprintf(stderr,"%d and %d\n",tmp->data,list->lastElement);
+	fprintf(stderr,"%d and %d\n",tmp->data,list->lastElement->data);
 	if (!(list->firstElement))
 		list->firstElement = tmp;
 }
