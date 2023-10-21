@@ -250,7 +250,7 @@ void expr_value_push(Stack *stack, int value)
 		perror("malloc fail - expr_value_push()");
 		return;
 	}
-	asprintf(tmp, "%d", tmpVal);
+	vsprintf(tmp, "%d", tmpVal);
 	// fprintf(stderr,"pushed %s\n",tmp);
 	tmp[len + 2] = '\0';
 	// push to stack digit by digit with ; as a divider
