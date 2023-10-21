@@ -75,7 +75,7 @@ void Stack_Init(Stack *stack)
 {
 	// solved = false; /* V případě řešení, smažte tento řádek! */
 	stack->array = malloc(STACK_SIZE);
-	//printf("maloc \n");
+	// printf("maloc \n");
 
 	if (stack->array == NULL)
 	{
@@ -96,12 +96,7 @@ void Stack_Init(Stack *stack)
  */
 bool Stack_IsEmpty(const Stack *stack)
 {
-	// solved = false; /* V případě řešení, smažte tento řádek! */
-	if (stack->topIndex == -1)
-	{
-		return true;
-	}
-	return false;
+	return (stack->topIndex == -1) ? true : false;
 }
 
 /**
@@ -143,10 +138,10 @@ void Stack_Top(const Stack *stack, char *dataPtr)
 {
 	// solved = false; /* V případě řešení, smažte tento řádek! */
 	if (Stack_IsEmpty(stack))
-		{
-			Stack_Error(SERR_TOP);
-			return;
-		}
+	{
+		Stack_Error(SERR_TOP);
+		return;
+	}
 
 	*dataPtr = stack->array[stack->topIndex];
 }
@@ -201,12 +196,12 @@ void Stack_Push(Stack *stack, char data)
 void Stack_Dispose(Stack *stack)
 {
 	// solved = false; /* V případě řešení, smažte tento řádek! */
-	//printf("free\n");
+	// printf("free\n");
 	if (!Stack_IsEmpty(stack) && stack != NULL)
 	{
 		free(stack->array);
 		stack->array = NULL;
-		free(stack);
+		// free(stack);
 	}
 }
 
