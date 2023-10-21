@@ -245,12 +245,18 @@ void expr_value_push(Stack *stack, int value)
 	}
 	// transfer int to char *
 	char *tmp = malloc(len + 1);
+	if (tmp == NULL)
+	{
+		perror("malloc fail - expr_value_push()");
+		return;
+	}
 	sprintf(tmp, "%d", tmpVal);
-	//fprintf(stderr,"pushed %s\n",tmp);
+	// fprintf(stderr,"pushed %s\n",tmp);
 	tmp[len + 2] = '\0';
 	// push to stack digit by digit with ; as a divider
 	for (int i = 0; i < len; i++)
 		Stack_Push(stack, tmp[i]);
+	free(tmp);
 }
 
 /**
@@ -278,8 +284,8 @@ void expr_value_pop(Stack *stack, int *value)
 	while (true)
 	{
 		Stack_Top(stack, &c);
-		//fprintf(stderr, "|%c| ", c);
-		// end of number
+		// fprintf(stderr, "|%c| ", c);
+		//  end of number
 		if (c == ';')
 		{
 			Stack_Pop(stack);
@@ -290,10 +296,10 @@ void expr_value_pop(Stack *stack, int *value)
 			*value += (int)pow(10, multiplier++) * tmp;
 		else
 			*value *= -1;
-		//fprintf(stderr, "val %d vs %d |\n", *value, tmp);
+		// fprintf(stderr, "val %d vs %d |\n", *value, tmp);
 		Stack_Pop(stack);
 	}
-	//fprintf(stderr, "\nextracted val : %d\n", *value);
+	// fprintf(stderr, "\nextracted val : %d\n", *value);
 }
 void popTwo(Stack *stack, int *a, int *b)
 {
@@ -337,31 +343,32 @@ bool eval(const char *infixExpression, VariableValue variableValues[], int varia
 		case '+':
 			popTwo(&stack, &a, &b);
 			expr_value_push(&stack, a + b);
-			//fprintf(stderr, "%d + %d = %d|\n", a, b, a + b);
+			// fprintf(stderr, "%d + %d = %d|\n", a, b, a + b);
 			break;
 		case '-':
 			popTwo(&stack, &a, &b);
 			expr_value_push(&stack, a - b);
-			//fprintf(stderr, "%d - %d = %d|\n", a, b, a - b);
+			// fprintf(stderr, "%d - %d = %d|\n", a, b, a - b);
 			break;
 		case '*':
 			popTwo(&stack, &a, &b);
 			expr_value_push(&stack, a * b);
-			//fprintf(stderr, "%d * %d = %d|\n", a, b, a * b);
+			// fprintf(stderr, "%d * %d = %d|\n", a, b, a * b);
 			break;
 		case '/':
 			popTwo(&stack, &a, &b);
 			expr_value_push(&stack, a / b);
-			//fprintf(stderr, "%d / %d = %d|\n", a, b, a / b);
+			// fprintf(stderr, "%d / %d = %d|\n", a, b, a / b);
 			break;
 		case '=':
 			expr_value_pop(&stack, value);
-			//fprintf(stderr, " %s val %s %d\nvariables: ", infixExpression, postFix, *value);
+			// fprintf(stderr, " %s val %s %d\nvariables: ", infixExpression, postFix, *value);
 			for (int i = 0; i < variableValueCount; i++)
 			{
-			//	fprintf(stderr, "%c = %d \t", variableValues[i].name, variableValues[i].value);
+				//	fprintf(stderr, "%c = %d \t", variableValues[i].name, variableValues[i].value);
 			}
-			//fprintf(stderr, "\n");
+			// fprintf(stderr, "\n");
+			free(postFix);
 			return true;
 		default:
 			for (int i = 0; i < variableValueCount; i++)
@@ -375,7 +382,7 @@ bool eval(const char *infixExpression, VariableValue variableValues[], int varia
 			break;
 		}
 	}
-
+	free(postFix);
 	return NULL;
 }
 
