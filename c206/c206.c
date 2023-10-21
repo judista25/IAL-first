@@ -158,6 +158,11 @@ void DLL_InsertLast(DLList *list, int data)
 		DLL_Error();
 		return;
 	}
+	if(list == NULL)
+	{
+		fprintf(stderr,"prd insert last\n");
+		return;
+	}
 	tmp->data = data;
 	tmp->previousElement = NULL;
 	tmp->previousElement = list->lastElement;
