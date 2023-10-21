@@ -474,7 +474,7 @@ int main(int argc, char *argv[])
 
 		for (test_id = 0; test_id < TEST_COUNT; test_id++)
 		{
-			fprintf(stderr,"test %li\n",test_id);
+			//fprintf(stderr,"test %li\n",test_id);
 			tests[test_id]();
 		}
 	}
