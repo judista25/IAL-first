@@ -11,7 +11,6 @@ TEST(test_init, "Initialization")
 	Stack_Init(test_stack);
 
 	test_print_stack(test_stack);
-	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_push_empty, "Stack push after initialization")
@@ -20,7 +19,6 @@ TEST(test_push_empty, "Stack push after initialization")
 
 	Stack_Push(test_stack, 'a');
 	test_print_stack(test_stack);
-	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_push_multiple, "Multiple stack pushes")
@@ -31,7 +29,6 @@ TEST(test_push_multiple, "Multiple stack pushes")
 	Stack_Push(test_stack, 'b');
 	Stack_Push(test_stack, 'c');
 	test_print_stack(test_stack);
-	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_pop, "Stack pop")
@@ -41,7 +38,6 @@ TEST(test_pop, "Stack pop")
 
 	Stack_Pop(test_stack);
 	test_print_stack(test_stack);
-	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_pop_multiple, "Multiple stack pops")
@@ -57,7 +53,6 @@ TEST(test_pop_multiple, "Multiple stack pops")
 	Stack_Pop(test_stack);
 	Stack_Pop(test_stack);
 	test_print_stack(test_stack);
-	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_top, "Stack top")
@@ -69,7 +64,6 @@ TEST(test_top, "Stack top")
 	Stack_Top(test_stack, &top);
 	printf("Char on the top: %c\n", top);
 	test_print_stack(test_stack);
-	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_top_full, "Stack top of full stack")
@@ -84,7 +78,6 @@ TEST(test_top_full, "Stack top of full stack")
 	Stack_Top(test_stack, &top);
 	printf("Char on the top: %c\n", top);
 	test_print_stack(test_stack);
-	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_empty, "Stack is empty after initialization")
@@ -92,7 +85,6 @@ TEST(test_empty, "Stack is empty after initialization")
 
 	test_print_stack(test_stack);
 	printf("Is stack empty? %s\n", Stack_IsEmpty(test_stack) ? "Yes" : "No");
-	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_not_empty, "Stack is not empty after pushing")
@@ -101,7 +93,6 @@ TEST(test_not_empty, "Stack is not empty after pushing")
 
 	test_print_stack(test_stack);
 	printf("Is stack empty? %s\n", Stack_IsEmpty(test_stack) ? "Yes" : "No");
-	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_not_empty_full, "Stack is not empty after filling")
@@ -113,7 +104,6 @@ TEST(test_not_empty_full, "Stack is not empty after filling")
 
 	test_print_stack(test_stack);
 	printf("Is stack empty? %s\n", Stack_IsEmpty(test_stack) ? "Yes" : "No");
-	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_not_full_init, "Stack is not full after initialization")
@@ -121,7 +111,6 @@ TEST(test_not_full_init, "Stack is not full after initialization")
 
 	test_print_stack(test_stack);
 	printf("Is stack full? %s\n", Stack_IsFull(test_stack) ? "Yes" : "No");
-	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_not_full, "Stack is not full after pushing")
@@ -130,7 +119,6 @@ TEST(test_not_full, "Stack is not full after pushing")
 
 	test_print_stack(test_stack);
 	printf("Is stack full? %s\n", Stack_IsFull(test_stack) ? "Yes" : "No");
-	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_full, "Stack is full after filling")
@@ -142,7 +130,6 @@ TEST(test_full, "Stack is full after filling")
 
 	test_print_stack(test_stack);
 	printf("Is stack full? %s\n", Stack_IsFull(test_stack) ? "Yes" : "No");
-	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_dispose, "Dispose stack")
