@@ -78,9 +78,12 @@ void Stack_Init(Stack *stack)
 		Stack_Error(SERR_INIT);
 		return;
 	}
-	stack->array = malloc(STACK_SIZE);
-	//failed malloc
-	if(stack->array == NULL)
+	if (!stack->array)
+		stack->array = malloc(STACK_SIZE);
+	else
+		realloc(stack->array ,STACK_SIZE);
+	// failed malloc
+	if (stack->array == NULL)
 	{
 		perror("failed malloc");
 		stack->topIndex = -2;
