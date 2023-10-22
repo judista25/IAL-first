@@ -198,6 +198,7 @@ void Stack_Dispose(Stack *stack)
 	// printf("free\n");
 	if (!Stack_IsEmpty(stack) && stack != NULL)
 	{
+		fprintf(stderr, "free succ\n");
 		free(stack->array);
 		stack->array = NULL;
 		stack->topIndex = 0;
