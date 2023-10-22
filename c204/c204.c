@@ -377,6 +377,7 @@ bool eval(const char *infixExpression, VariableValue variableValues[], int varia
 			break;
 		}
 	}
+	Stack_Dispose(&stack);
 	free(postFix);
 	return NULL;
 }
