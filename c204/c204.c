@@ -170,7 +170,7 @@ char *infix2postfix(const char *infixExpression)
 	Stack stack;
 	Stack_Init(&stack);
 	int i = 0;
-	char *postFixExpr = malloc(MAX_LEN);
+	char *postFixExpr = (char *)malloc(MAX_LEN);
 	// failed malloc check
 	if (!postFixExpr)
 		return NULL;
@@ -200,16 +200,20 @@ char *infix2postfix(const char *infixExpression)
 			{
 				Stack_Top(&stack, &c);
 				Stack_Pop(&stack);
+				fprintf(stderr, "=\n");
 				postFixExpr[postCounter++] = c;
 			}
+			fprintf(stderr, "=\n");
 			postFixExpr[postCounter++] = '=';
 			break;
 		default:
+			fprintf(stderr, "def\n");
 			postFixExpr[postCounter++] = c;
 			break;
 		}
 		i++;
 	}
+	fprintf(stderr, "end\n");
 	postFixExpr[postCounter] = '\0';
 
 	return postFixExpr;
