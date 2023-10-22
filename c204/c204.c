@@ -212,6 +212,7 @@ char *infix2postfix(const char *infixExpression)
 				postFixExpr[postCounter++] = c;
 			}
 			postFixExpr[postCounter++] = '=';
+			postFixExpr[postCounter] = '\0';
 			break;
 		default:
 			postFixExpr[postCounter++] = c;
