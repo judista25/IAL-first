@@ -241,7 +241,7 @@ void expr_value_push(Stack *stack, int value)
 	int len = snprintf(tmp, max_digits, "%d", value);
     // Convert the integer to a character string
     if (len < 0) {
-        printf(stderr,"Error converting integer to string.\n");
+        fprintf(stderr,"Error converting integer to string.\n");
         free(tmp);
         return;
     }
