@@ -230,19 +230,23 @@ char *infix2postfix(const char *infixExpression)
 void expr_value_push(Stack *stack, int value)
 {
 	// findout how many digits does value have
-	int tmpVal = value;
-	int len = 0;
-	Stack_Push(stack, ';');
-	if (tmpVal < 0)
-	{
-		Stack_Push(stack, '-');
-	}
-	// transfer int to char *
-	char *tmp = NULL;
-	len = asprintf(&tmp, "%d", tmpVal);
-	// fprintf(stderr,"pushed %s\n",tmp);
-	tmp[len + 2] = '\0';
-	// push to stack digit by digit with ; as a divider
+	int max_digits = snprintf(NULL, 0, "%d", value) + 1;
+
+    // Allocate memory for the character array
+    char *tmp = (char *)malloc(max_digits);
+    if (tmp == NULL) {
+        fprintf(stderr,"Memory allocation failed.\n");
+        return;
+    }
+	int len = snprintf(tmp, max_digits, "%d", value);
+    // Convert the integer to a character string
+    if (len < 0) {
+        printf(stderr,"Error converting integer to string.\n");
+        free(tmp);
+        return;
+    }
+
+    // Don't forget to free the allocated memory
 	for (int i = 0; i < len; i++)
 		Stack_Push(stack, tmp[i]);
 	free(tmp);
