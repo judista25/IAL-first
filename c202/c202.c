@@ -74,9 +74,14 @@ void Stack_Error(int error_code)
 void Stack_Init(Stack *stack)
 {
 	stack->array = malloc(STACK_SIZE);
-	// printf("maloc \n");
-
-	if (stack->array == NULL)
+	//failed malloc
+	if(stack->array == NULL)
+	{
+		perror("failed malloc");
+		stack->topIndex = -2;
+		return;
+	}
+	if (stack == NULL)
 	{
 		Stack_Error(SERR_INIT);
 		return;
@@ -194,6 +199,7 @@ void Stack_Dispose(Stack *stack)
 	{
 		free(stack->array);
 		stack->array = NULL;
+		stack->topIndex = 0;
 		// free(stack);
 	}
 }
