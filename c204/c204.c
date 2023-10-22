@@ -222,7 +222,7 @@ char *infix2postfix(const char *infixExpression)
 	}
 	// fprintf(stderr, "end\n");
 	// postFixExpr[postCounter] = '\0';
-	fprintf(stderr,"%s v11s  %s\n",infixExpression,postFixExpr);
+	fprintf(stderr, "%s v11s  %s\n", infixExpression, postFixExpr);
 	return postFixExpr;
 }
 
@@ -288,7 +288,7 @@ void expr_value_pop(Stack *stack, int *value)
 	while (true)
 	{
 		Stack_Top(stack, &c);
-		// fprintf(stderr, "|%c| ", c);
+		fprintf(stderr, "|%c| ", c);
 		//  end of number
 		if (c == ';')
 		{
@@ -300,10 +300,9 @@ void expr_value_pop(Stack *stack, int *value)
 			*value += (int)pow(10, multiplier++) * tmp;
 		else
 			*value *= -1;
-		// fprintf(stderr, "val %d vs %d |\n", *value, tmp);
 		Stack_Pop(stack);
 	}
-	// fprintf(stderr, "\nextracted val : %d\n", *value);
+		fprintf(stderr, "val %d|\n", *value);
 }
 void popTwo(Stack *stack, int *a, int *b)
 {
@@ -367,7 +366,7 @@ bool eval(const char *infixExpression, VariableValue variableValues[], int varia
 		case '=':
 			expr_value_pop(&stack, value);
 			Stack_Dispose(&stack);
-			fprintf(stderr,"%s vs  %s = %d\n",infixExpression,postFix,*value);
+			fprintf(stderr, "%s vs  %s = %d\n", infixExpression, postFix, *value);
 			free(postFix);
 			return true;
 		default:
