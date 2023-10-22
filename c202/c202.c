@@ -78,10 +78,8 @@ void Stack_Init(Stack *stack)
 		Stack_Error(SERR_INIT);
 		return;
 	}
-	if (!stack->array)
-		stack->array = malloc(STACK_SIZE);
-	else
-		realloc(stack->array ,STACK_SIZE);
+	stack->array = malloc(STACK_SIZE);
+		//realloc(stack->array ,STACK_SIZE);
 	// failed malloc
 	if (stack->array == NULL)
 	{
