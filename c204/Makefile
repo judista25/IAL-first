@@ -4,7 +4,7 @@ TEST_OUTPUTS=$(PROJECT)-test.out $(PROJECT)-test-advanced.out
 PROG=$(PROJECT)-test
 C202_DEPENDENCY=../c202/c202.c
 CC=gcc
-CFLAGS=-std=c99 -fsanitize=address -Wall -Wextra -pedantic -lm -fcommon
+CFLAGS=-std=c99 -Wall -Wextra -pedantic -lm -fcommon
 SHELL=bash
 
 .PHONY: all run tests clean purge
@@ -12,7 +12,7 @@ SHELL=bash
 all: $(PROG)
 
 run: $(PROG)
-	@./$(PROG) > current-test.out
+	@valgrind ./$(PROG) > current-test.out
 	@echo -e "\nTest output differences:"
 	@diff -u --report-identical-files --text $(PROG).out current-test.out
 	@rm -f current-test.out

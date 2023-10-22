@@ -173,10 +173,14 @@ char *infix2postfix(const char *infixExpression)
 	char *postFixExpr = (char *)malloc(MAX_LEN);
 	// failed malloc check
 	if (!postFixExpr)
+	{
+		fprintf(stderr,"malloc fail postfix\n");
 		return NULL;
-	postFixExpr[MAX_LEN - 1] = '\0';
+	}
+	//postFixExpr[MAX_LEN - 1] = '\0';
 	unsigned postCounter = 0;
-	while (i < MAX_LEN)
+	int len = strlen(infixExpression);
+	while (i < len)
 	{
 		// save char and chose what to do with switch
 		char c = infixExpression[i];
