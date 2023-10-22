@@ -174,7 +174,7 @@ char *infix2postfix(const char *infixExpression)
 	}
 	Stack stack;
 	Stack_Init(&stack);
-	int i = 0;
+	size_t i = 0;
 	char *postFixExpr = (char *)malloc(MAX_LEN);
 	// failed malloc check
 	if (!postFixExpr)
@@ -184,7 +184,7 @@ char *infix2postfix(const char *infixExpression)
 	}
 	// postFixExpr[MAX_LEN - 1] = '\0';
 	unsigned postCounter = 0;
-	int len = strlen(infixExpression);
+	size_t len = strlen(infixExpression);
 	while (i < len)
 	{
 		// save char and chose what to do with switch
@@ -221,7 +221,7 @@ char *infix2postfix(const char *infixExpression)
 	}
 	// fprintf(stderr, "end\n");
 	// postFixExpr[postCounter] = '\0';
-
+	fprintf(stderr,"%s v11s  %s\n",infixExpression,postFixExpr);
 	return postFixExpr;
 }
 
@@ -366,13 +366,8 @@ bool eval(const char *infixExpression, VariableValue variableValues[], int varia
 			break;
 		case '=':
 			expr_value_pop(&stack, value);
-			// fprintf(stderr, " %s val %s %d\nvariables: ", infixExpression, postFix, *value);
-			for (int i = 0; i < variableValueCount; i++)
-			{
-				//	fprintf(stderr, "%c = %d \t", variableValues[i].name, variableValues[i].value);
-			}
-			// fprintf(stderr, "\n");
 			Stack_Dispose(&stack);
+			fprintf(stderr,"%s vs  %s = %d\n",infixExpression,postFix,*value);
 			free(postFix);
 			return true;
 		default:
