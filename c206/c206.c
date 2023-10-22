@@ -130,16 +130,11 @@ void DLL_InsertFirst(DLList *list, int data)
 	tmp->data = data;
 	tmp->previousElement = NULL;
 	tmp->nextElement = list->firstElement;
-
-	if (list->firstElement != NULL)
-	{
+	if (list->firstElement)
 		list->firstElement->previousElement = tmp;
-	}
 	list->firstElement = tmp;
-	if (list->lastElement == NULL)
-	{
+	if (!(list->lastElement))
 		list->lastElement = tmp;
-	}
 }
 
 /**
