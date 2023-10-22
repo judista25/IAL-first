@@ -362,6 +362,7 @@ bool eval(const char *infixExpression, VariableValue variableValues[], int varia
 				//	fprintf(stderr, "%c = %d \t", variableValues[i].name, variableValues[i].value);
 			}
 			// fprintf(stderr, "\n");
+			Stack_Dispose(&stack);
 			free(postFix);
 			return true;
 		default:
