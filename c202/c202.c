@@ -82,7 +82,7 @@ void Stack_Init(Stack *stack)
 	// failed malloc
 	if (stack->array == NULL)
 	{
-		perror("failed malloc");
+		fprintf(stderr,"failed malloc\n");
 		stack->topIndex = -2;
 		return;
 	}
