@@ -167,6 +167,11 @@ void doOperation(Stack *stack, char c, char *postfixExpression, unsigned *postfi
  */
 char *infix2postfix(const char *infixExpression)
 {
+	if (infixExpression == NULL)
+	{
+		fprintf(stderr, "no string passed\n");
+		return NULL;
+	}
 	Stack stack;
 	Stack_Init(&stack);
 	int i = 0;
@@ -174,10 +179,10 @@ char *infix2postfix(const char *infixExpression)
 	// failed malloc check
 	if (!postFixExpr)
 	{
-		fprintf(stderr,"malloc fail postfix\n");
+		fprintf(stderr, "malloc fail postfix\n");
 		return NULL;
 	}
-	//postFixExpr[MAX_LEN - 1] = '\0';
+	// postFixExpr[MAX_LEN - 1] = '\0';
 	unsigned postCounter = 0;
 	int len = strlen(infixExpression);
 	while (i < len)
@@ -214,8 +219,8 @@ char *infix2postfix(const char *infixExpression)
 		}
 		i++;
 	}
-	//fprintf(stderr, "end\n");
-	//postFixExpr[postCounter] = '\0';
+	// fprintf(stderr, "end\n");
+	// postFixExpr[postCounter] = '\0';
 
 	return postFixExpr;
 }
