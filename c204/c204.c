@@ -113,8 +113,7 @@ void doOperation(Stack *stack, char c, char *postfixExpression, unsigned *postfi
 		}
 		// otherwise add top char and continue looking for next
 		Stack_Pop(stack);
-		postfixExpression[(*postfixExpressionLength)] = topChar;
-		(*postfixExpressionLength)++;
+		postfixExpression[(*postfixExpressionLength)++] = topChar;
 	}
 }
 
@@ -231,7 +230,6 @@ void expr_value_push(Stack *stack, int value)
 {
 	// findout how many digits does value have
 	int max_digits = snprintf(NULL, 0, "%d", value) + 1;
-	fprintf(stderr, "asi se neco vysere\n");
 	// Allocate memory for the character array
 	char *tmp = (char *)malloc(max_digits);
 	if (tmp == NULL)
