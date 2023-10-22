@@ -12,7 +12,7 @@ SHELL=bash
 all: $(PROG)
 
 run: $(PROG)
-	@valgrind -v ./$(PROG) > current-test.out
+	@./$(PROG) > current-test.out
 	@echo -e "\nTest output differences:"
 	@diff -u --report-identical-files --text $(PROG).out current-test.out
 	@rm -f current-test.out
