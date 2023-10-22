@@ -179,6 +179,7 @@ char *infix2postfix(const char *infixExpression)
 	// failed malloc check
 	if (!postFixExpr)
 	{
+		Stack_Dispose(&stack);
 		fprintf(stderr, "malloc fail postfix\n");
 		return NULL;
 	}
@@ -211,7 +212,6 @@ char *infix2postfix(const char *infixExpression)
 				Stack_Pop(&stack);
 				postFixExpr[postCounter++] = c;
 			}
-			Stack_Dispose(&stack);
 			postFixExpr[postCounter++] = '=';
 			postFixExpr[postCounter] = '\0';
 			break;
@@ -223,6 +223,7 @@ char *infix2postfix(const char *infixExpression)
 	}
 	// fprintf(stderr, "end\n");
 	// postFixExpr[postCounter] = '\0';
+	Stack_Dispose(&stack);
 	fprintf(stderr, "%s v11s  %s\n", infixExpression, postFixExpr);
 	return postFixExpr;
 }
