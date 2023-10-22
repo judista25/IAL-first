@@ -368,7 +368,7 @@ void DLL_InsertAfter(DLList *list, int data)
 	tmp->data = data;
 	// link tmp and active
 	tmp->previousElement = list->activeElement;
-
+	// if last no next else conect it to the right neighbour
 	if (list->activeElement == list->lastElement)
 	{
 

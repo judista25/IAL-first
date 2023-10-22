@@ -94,7 +94,6 @@ void doOperation(Stack *stack, char c, char *postfixExpression, unsigned *postfi
 	{
 		if (Stack_IsEmpty(stack))
 		{
-			// fprintf(stderr,"%c|\n",c);
 			Stack_Push(stack, c);
 			return;
 		}
@@ -294,15 +293,16 @@ void expr_value_pop(Stack *stack, int *value)
 			break;
 		}
 		int tmp = c - '0';
-		//converting chars to int
+		// converting chars to int and putting them in their respective place
 		if (c != '-')
 			*value += (int)pow(10, multiplier++) * tmp;
 		else
 			*value *= -1;
+		// we good beacouse '-' can only be as last char
 		Stack_Pop(stack);
 	}
 }
-//helping function to help with poping numbers
+// helping function to help with poping numbers
 void popTwo(Stack *stack, int *a, int *b)
 {
 	expr_value_pop(stack, b);
@@ -342,6 +342,7 @@ bool eval(const char *infixExpression, VariableValue variableValues[], int varia
 		int a = 0, b = 0;
 		switch (c)
 		{
+			// poppin 2 values to do their respective computation
 		case '+':
 			popTwo(&stack, &a, &b);
 			expr_value_push(&stack, a + b);
@@ -364,6 +365,7 @@ bool eval(const char *infixExpression, VariableValue variableValues[], int varia
 			free(postFix);
 			return true;
 		default:
+			// switchin variables for values on stack
 			for (int i = 0; i < variableValueCount; i++)
 			{
 				if (variableValues[i].name == c)

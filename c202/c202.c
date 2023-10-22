@@ -117,11 +117,7 @@ bool Stack_IsEmpty(const Stack *stack)
  */
 bool Stack_IsFull(const Stack *stack)
 {
-	if (stack->topIndex == STACK_SIZE - 1)
-	{
-		return true;
-	}
-	return false;
+	return (stack->topIndex == STACK_SIZE - 1) ? true : false;
 }
 
 /**
@@ -194,12 +190,11 @@ void Stack_Push(Stack *stack, char data)
  */
 void Stack_Dispose(Stack *stack)
 {
-	if ( stack != NULL)
+	if (stack != NULL)
 	{
 		free(stack->array);
 		stack->array = NULL;
 		stack->topIndex = 0;
-		// free(stack);
 	}
 }
 
