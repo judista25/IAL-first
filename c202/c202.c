@@ -78,14 +78,15 @@ void Stack_Init(Stack *stack)
 		Stack_Error(SERR_INIT);
 		return;
 	}
-	stack->array = (char *) malloc(STACK_SIZE);
+	stack->array = (char *)malloc(STACK_SIZE);
 	// failed malloc
 	if (stack->array == NULL)
 	{
-		fprintf(stderr,"failed malloc\n");
+		fprintf(stderr, "failed malloc\n");
 		stack->topIndex = -2;
 		return;
 	}
+	fprintf(stderr, "malloc succ\n");
 	stack->topIndex = -1;
 }
 
@@ -200,7 +201,7 @@ void Stack_Dispose(Stack *stack)
 		free(stack->array);
 		stack->array = NULL;
 		stack->topIndex = 0;
-		//free(stack);
+		// free(stack);
 	}
 }
 
