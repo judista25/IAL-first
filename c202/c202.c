@@ -196,7 +196,7 @@ void Stack_Push(Stack *stack, char data)
 void Stack_Dispose(Stack *stack)
 {
 	fprintf(stderr,"free\n");
-	if (!Stack_IsEmpty(stack) && stack != NULL)
+	if (!Stack_IsEmpty(stack) )
 	{
 		fprintf(stderr, "free succ\n");
 		free(stack->array);
