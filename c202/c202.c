@@ -81,7 +81,7 @@ void Stack_Init(Stack *stack)
 	stack = malloc(sizeof(Stack));
 	if (stack->array != NULL)
 	{
-		fprintf(stderr, "pici %p w %dale\n", stack->array, stack->topIndex);
+		fprintf(stderr, "pici ale\n");
 		//free(stack->array);
 	}
 	stack->array = malloc(STACK_SIZE);
