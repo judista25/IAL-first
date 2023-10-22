@@ -231,24 +231,26 @@ void expr_value_push(Stack *stack, int value)
 {
 	// findout how many digits does value have
 	int max_digits = snprintf(NULL, 0, "%d", value) + 1;
-
-    // Allocate memory for the character array
-    char *tmp = (char *)malloc(max_digits);
-    if (tmp == NULL) {
-        fprintf(stderr,"Memory allocation failed.\n");
-        return;
-    }
+	fprintf(stderr, "asi se neco vysere\n");
+	// Allocate memory for the character array
+	char *tmp = (char *)malloc(max_digits);
+	if (tmp == NULL)
+	{
+		fprintf(stderr, "Memory allocation failed.\n");
+		return;
+	}
 	int len = snprintf(tmp, max_digits, "%d", value);
-    // Convert the integer to a character string
-    if (len < 0) {
-        fprintf(stderr,"Error converting integer to string.\n");
-        free(tmp);
-        return;
-    }
-
-    // Don't forget to free the allocated memory
+	// Convert the integer to a character string
+	if (len < 0)
+	{
+		fprintf(stderr, "Error converting integer to string.\n");
+		free(tmp);
+		return;
+	}
+	Stack_Push(stack, ';');
 	for (int i = 0; i < len; i++)
 		Stack_Push(stack, tmp[i]);
+	// Don't forget to free the allocated memory
 	free(tmp);
 }
 
