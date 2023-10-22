@@ -11,6 +11,7 @@ TEST(test_init, "Initialization")
 	Stack_Init(test_stack);
 
 	test_print_stack(test_stack);
+	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_push_empty, "Stack push after initialization")
@@ -38,6 +39,7 @@ TEST(test_pop, "Stack pop")
 
 	Stack_Pop(test_stack);
 	test_print_stack(test_stack);
+	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_pop_multiple, "Multiple stack pops")
@@ -85,6 +87,7 @@ TEST(test_empty, "Stack is empty after initialization")
 
 	test_print_stack(test_stack);
 	printf("Is stack empty? %s\n", Stack_IsEmpty(test_stack) ? "Yes" : "No");
+	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_not_empty, "Stack is not empty after pushing")
@@ -111,6 +114,7 @@ TEST(test_not_full_init, "Stack is not full after initialization")
 
 	test_print_stack(test_stack);
 	printf("Is stack full? %s\n", Stack_IsFull(test_stack) ? "Yes" : "No");
+	Stack_Dispose(test_stack);
 ENDTEST
 
 TEST(test_not_full, "Stack is not full after pushing")
