@@ -4,7 +4,7 @@ TEST_OUTPUTS=$(PROJECT)-test.out $(PROJECT)-test-advanced.out
 PROG=$(PROJECT)-test
 C202_DEPENDENCY=../c202/c202.c
 CC=gcc
-CFLAGS=-std=c99 -Wall -Wextra -pedantic -lm -fcommon
+CFLAGS=-std=c99 -fsanitize=address -Wall -Wextra -pedantic -lm -fcommon
 SHELL=bash
 
 .PHONY: all run tests clean purge
