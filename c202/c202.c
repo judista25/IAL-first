@@ -73,17 +73,17 @@ void Stack_Error(int error_code)
  */
 void Stack_Init(Stack *stack)
 {
+	if (stack == NULL)
+	{
+		Stack_Error(SERR_INIT);
+		return;
+	}
 	stack->array = malloc(STACK_SIZE);
 	//failed malloc
 	if(stack->array == NULL)
 	{
 		perror("failed malloc");
 		stack->topIndex = -2;
-		return;
-	}
-	if (stack == NULL)
-	{
-		Stack_Error(SERR_INIT);
 		return;
 	}
 	stack->topIndex = -1;
