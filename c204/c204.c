@@ -221,10 +221,7 @@ char *infix2postfix(const char *infixExpression)
 		}
 		i++;
 	}
-	// fprintf(stderr, "end\n");
-	// postFixExpr[postCounter] = '\0';
 	Stack_Dispose(&stack);
-	//fprintf(stderr, "%s v11s  %s\n", infixExpression, postFixExpr);
 	return postFixExpr;
 }
 
@@ -241,17 +238,17 @@ char *infix2postfix(const char *infixExpression)
  */
 void expr_value_push(Stack *stack, int value)
 {
-	// findout how many digits does value have
+	// find out how many digits does value have
 	int max_digits = snprintf(NULL, 0, "%d", value) + 1;
-	// Allocate memory for the character array
+	// Allocate memory for string
 	char *tmp = (char *)malloc(max_digits);
 	if (tmp == NULL)
 	{
 		fprintf(stderr, "Memory allocation failed.\n");
 		return;
 	}
+	// Convert the integer to string
 	int len = snprintf(tmp, max_digits, "%d", value);
-	// Convert the integer to a character string
 	if (len < 0)
 	{
 		fprintf(stderr, "Error converting integer to string.\n");
@@ -290,22 +287,22 @@ void expr_value_pop(Stack *stack, int *value)
 	while (true)
 	{
 		Stack_Top(stack, &c);
-		//fprintf(stderr, "|%c| ", c);
-		//  end of number
+		// end of number
 		if (c == ';')
 		{
 			Stack_Pop(stack);
 			break;
 		}
 		int tmp = c - '0';
+		//converting chars to int
 		if (c != '-')
 			*value += (int)pow(10, multiplier++) * tmp;
 		else
 			*value *= -1;
 		Stack_Pop(stack);
 	}
-		//fprintf(stderr, "val %d|\n", *value);
 }
+//helping function to help with poping numbers
 void popTwo(Stack *stack, int *a, int *b)
 {
 	expr_value_pop(stack, b);
@@ -348,27 +345,22 @@ bool eval(const char *infixExpression, VariableValue variableValues[], int varia
 		case '+':
 			popTwo(&stack, &a, &b);
 			expr_value_push(&stack, a + b);
-			// fprintf(stderr, "%d + %d = %d|\n", a, b, a + b);
 			break;
 		case '-':
 			popTwo(&stack, &a, &b);
 			expr_value_push(&stack, a - b);
-			// fprintf(stderr, "%d - %d = %d|\n", a, b, a - b);
 			break;
 		case '*':
 			popTwo(&stack, &a, &b);
 			expr_value_push(&stack, a * b);
-			// fprintf(stderr, "%d * %d = %d|\n", a, b, a * b);
 			break;
 		case '/':
 			popTwo(&stack, &a, &b);
 			expr_value_push(&stack, a / b);
-			// fprintf(stderr, "%d / %d = %d|\n", a, b, a / b);
 			break;
 		case '=':
 			expr_value_pop(&stack, value);
 			Stack_Dispose(&stack);
-			//fprintf(stderr, "%s vs  %s = %d\n", infixExpression, postFix, *value);
 			free(postFix);
 			return true;
 		default:
