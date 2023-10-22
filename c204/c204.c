@@ -211,6 +211,7 @@ char *infix2postfix(const char *infixExpression)
 				Stack_Pop(&stack);
 				postFixExpr[postCounter++] = c;
 			}
+			Stack_Dispose(&stack);
 			postFixExpr[postCounter++] = '=';
 			postFixExpr[postCounter] = '\0';
 			break;
