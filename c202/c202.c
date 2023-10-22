@@ -78,8 +78,12 @@ void Stack_Init(Stack *stack)
 		Stack_Error(SERR_INIT);
 		return;
 	}
+	if (stack->array != NULL)
+	{
+		fprintf(stderr, "pici %p w %dale\n", stack->array, stack->topIndex);
+		//free(stack->array);
+	}
 	stack->array = malloc(STACK_SIZE);
-		//realloc(stack->array ,STACK_SIZE);
 	// failed malloc
 	if (stack->array == NULL)
 	{
