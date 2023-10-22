@@ -335,7 +335,8 @@ bool eval(const char *infixExpression, VariableValue variableValues[], int varia
 {
 	Stack stack;
 	Stack_Init(&stack);
-	char *postFix = infix2postfix(infixExpression);
+	char *postFix = (char *)malloc(MAX_LEN);
+	strcpy(postFix,infix2postfix(infixExpression));
 	size_t len = strlen(postFix);
 	for (size_t i = 0; i < len; i++)
 	{
