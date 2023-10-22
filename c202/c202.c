@@ -78,6 +78,7 @@ void Stack_Init(Stack *stack)
 		Stack_Error(SERR_INIT);
 		return;
 	}
+	stack = malloc(sizeof(Stack));
 	if (stack->array != NULL)
 	{
 		fprintf(stderr, "pici %p w %dale\n", stack->array, stack->topIndex);
@@ -205,7 +206,7 @@ void Stack_Dispose(Stack *stack)
 		free(stack->array);
 		stack->array = NULL;
 		stack->topIndex = 0;
-		// free(stack);
+		free(stack);
 	}
 }
 
