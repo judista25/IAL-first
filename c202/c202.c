@@ -86,7 +86,6 @@ void Stack_Init(Stack *stack)
 		stack->topIndex = -2;
 		return;
 	}
-	fprintf(stderr, "malloc succ\n");
 	stack->topIndex = -1;
 }
 
@@ -195,10 +194,8 @@ void Stack_Push(Stack *stack, char data)
  */
 void Stack_Dispose(Stack *stack)
 {
-	fprintf(stderr,"free\n");
 	if ( stack != NULL)
 	{
-		fprintf(stderr, "free succ\n");
 		free(stack->array);
 		stack->array = NULL;
 		stack->topIndex = 0;
